@@ -46,6 +46,18 @@ public class BookControllerTest extends AbstractTest{
     }
 
     @Test
+    public void Given_register_only_new_book_When_registerBook_Then_bookResponse_no_capacity (){
+        BookDto dto = new BookDto("El Resplandor", 1972, "Stephen King", "Comercial", "suave");
+        for (int index = 1; index < 5; index++) {
+            restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);   
+        }
+        restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
+
+        ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
+        assertEquals("No se tiene mas capacidad para es libro",result.getBody().getData());
+    }
+
+    @Test
     public void Given_search_route_When_registerBook_Then_retrun_hola (){
 
         ResponseEntity<String> result = restTemplate.getForEntity(PATH_LOOKFOR,
