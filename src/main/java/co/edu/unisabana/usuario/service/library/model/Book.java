@@ -4,11 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+
+
 @Getter
-@Setter
+
 @AllArgsConstructor
+
 public class Book {
 
+    public Book () {
+
+    }
     private final String name;
     private final int year;
     private final String author;
