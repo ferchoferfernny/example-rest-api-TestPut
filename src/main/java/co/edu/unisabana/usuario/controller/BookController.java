@@ -26,8 +26,6 @@ public class BookController {
             return new BookReponse("Actualizada cantidad");
         }
         return new BookReponse("Nuevo libro registrado");
-
-
     }
 
     @GetMapping("/search")
