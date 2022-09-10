@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Repository
 public class BookDao implements SearchBookPort, RegisterBookPort, AddBookPort {
 
-    static List<BookEntity> listBooks = new ArrayList<>();
+    public static List<BookEntity> listBooks = new ArrayList<>();
 
     @Override
     public boolean validateExistsBook(String nameBook) {
