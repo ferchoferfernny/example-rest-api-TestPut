@@ -19,6 +19,8 @@ public class UsuarioControllerTest extends AbstractTest {
   private static final String PATH_DATA = "/data";
   private static final String PATH_DATOS = "/search?q=";
 
+  
+
   /**
    * Given: Dado que (Precondicones)
    * When: Que voy hacer/probar
@@ -48,7 +50,7 @@ public class UsuarioControllerTest extends AbstractTest {
   public void Given_search_laura_When_invoke_search_Then_return_2_records() {
     ResponseEntity<UserDTOResponse> result = restTemplate.getForEntity(PATH_DATOS + "laura",
             UserDTOResponse.class);
-    assertEquals(3, result.getBody().getData().size());
+    assertEquals(1, result.getBody().getData().size());
     assertTrue(result.getBody().getData().size() == 3);
     //assertFalse(result.getBody().getData().isEmpty());
   }
