@@ -12,6 +12,7 @@ public class RegisterBookLibrary {
     private final SearchBookPort searchBookPort;
     private final AddBookPort addBookPort;
     private final RegisterBookPort registerBookPort;
+    
 
     public RegisterBookLibrary(SearchBookPort searchBookPort, AddBookPort addBookPort, RegisterBookPort registerBookPort) {
         this.searchBookPort = searchBookPort;
@@ -22,13 +23,26 @@ public class RegisterBookLibrary {
 
     public int registerBook(Book book) {
         boolean exists = searchBookPort.validateExistsBook(book.getName());
+        int qty = searchBookPort.validateQuantity(book.getName());
         if (exists) {
-            addBookPort.addBook(book.getName());
-            return 1;
+            if (qty>5)
+            {
+                addBookPort.addBook(book.getName());
+                return 1;
+            }else 
+            {
+                return 3;
+            }
+            
         } else {
             registerBookPort.registerBook(book);
             return 2;
         }
+    }
+
+    public void emptyShell ()
+    {
+        registerBookPort.eliminateQuantity();
     }
 
     
