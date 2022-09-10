@@ -2,8 +2,10 @@ package co.edu.unisabana.usuario.service.library.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class Book {
 

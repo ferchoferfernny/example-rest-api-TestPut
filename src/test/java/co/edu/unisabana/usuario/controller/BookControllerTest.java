@@ -11,6 +11,7 @@ import co.edu.unisabana.usuario.AbstractTest;
 import co.edu.unisabana.usuario.dto.BookDto;
 import co.edu.unisabana.usuario.dto.BookReponse;
 import co.edu.unisabana.usuario.service.library.model.Book;
+import co.edu.unisabana.usuario.service.library.model.CategoryBook;
 
 public class BookControllerTest extends AbstractTest{
 
