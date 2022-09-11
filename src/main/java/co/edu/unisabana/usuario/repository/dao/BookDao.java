@@ -64,7 +64,8 @@ public class BookDao implements SearchBookPort, RegisterBookPort, AddBookPort {
     public ArrayList searchbBookByAutor(String authorName) {
         ArrayList <BookEntity> lookupBookDto = new ArrayList <>();
         listBooks.forEach(book -> {
-            if (book.getAuthor().equals(authorName)) {
+            if (book.getAuthor().equals(authorName))
+            {
              lookupBookDto.add(book);
             }
         });
@@ -74,8 +75,9 @@ public class BookDao implements SearchBookPort, RegisterBookPort, AddBookPort {
 
     @Override
     public void eliminateQuantity() {
-        //Este metodo elimina cualquier cantidad que exita dentro todos los libros
-        listBooks.forEach(book -> {
+        //Este metodo elimina cualquier cantidad que exista dentro todos los libros
+        listBooks.forEach(book ->
+        {
             book.setQuantity(0);
         });
     }

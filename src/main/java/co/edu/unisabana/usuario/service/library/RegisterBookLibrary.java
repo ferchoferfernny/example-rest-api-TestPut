@@ -21,11 +21,13 @@ public class RegisterBookLibrary {
     }
 
 
-    public int registerBook(Book book) {
+    public int registerBook(Book book)
+    {
         boolean exists = searchBookPort.validateExistsBook(book.getName());
         int qty = searchBookPort.validateQuantity(book.getName());
-        if (exists) {
-            if (qty>5)
+        if (exists)
+        {
+            if (qty<5)
             {
                 addBookPort.addBook(book.getName());
                 return 1;

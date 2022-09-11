@@ -82,4 +82,42 @@ public class RegisterBookServiceTest
         });
     }
 
+    @Test
+    public void Given_Book_When_RegisterBook_Then_ValidateQuantityAlowed()
+    {
+        Book book = new Book("Hush Hush ", 2009, "Becca Fitzpatrick", false,CategoryBook.SOFT_COVER);
+        Mockito.when(searchBookPort.validateQuantity(book.getName())).thenReturn(true);
+        int qty =service.registerBook(book);
+        Mockito.verify(searchBookPort).validateQuantity(book.getName());
+        assertEquals(1,qty);
+    }
+
+    @Test
+    public void Given_Book_When_RegisterBook_Then_QuantityIsNotAllowed()
+    {
+        Book book = new Book("La chica del tren ", 2015, "Paula Hawkins", false,CategoryBook.SOFT_COVER);
+        Mockito.when(searchBookPort.validateQuantity(book.getName())).thenReturn(false);
+        int qty =service.registerBook(book);
+        Mockito.verify(searchBookPort).validateQuantity(book.getName());
+        assertEquals(3,qty);
+    }
+
+    @Test
+    public void Given_AuthorName_When_SearchAuthorBooks_Then_FindAuthorBooks()
+    {
+        LookUp author =new LookUp ("Paula Hawkins");
+        Mockito.when(searchBookPort.searchbBookByAutor(Author));
+        String authorName =service.registerBook(Author);
+        Mockito.verify(searchBookPort).searchbBookByAutor(book.getAuthor());
+        assertEquals("La chica del tren");
+    }
+
+    @Test
+    public void Given_Book_When_EliminateQuantity_Then_DeleteBooks()
+    {
+        Mockito.when(eliminateQuantity());
+        Mockito.verify(searchBookPort).eliminateQuantity(book.getQuantity());
+        assertEquals(0);
+    }
+
 }
