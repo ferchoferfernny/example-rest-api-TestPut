@@ -14,8 +14,9 @@ public class BookController {
     private final LookUp lkLib;
 
 
-    public BookController(RegisterBookLibrary registerBookLibrary) {
+    public BookController(RegisterBookLibrary registerBookLibrary, LookUp lkLib) {
         this.registerBookLibrary = registerBookLibrary;
+        this.lkLib= lkLib;
     }
 
     // Pendiente validar uso de exception handler

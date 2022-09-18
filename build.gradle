@@ -4,9 +4,16 @@ plugins {
 	id 'java'
 }
 
+apply plugin: 'jacoco'
+
 group = 'co.edu.unisabana'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '8'
+
+
+ext {
+	jacocoVersion = '0.7.5.201505241946'
+}
 
 repositories {
 	mavenCentral()
@@ -21,6 +28,20 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:1.18.24'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jacoco {
+	toolVersion = jacocoVersion;
+
+}
+
+jacocoTestReport {
+	reports 
+	{
+		html.enabled = true
+		xml.enabled = true
+		csv.enabled = true
+	}
 }
 
 tasks.named('test') {

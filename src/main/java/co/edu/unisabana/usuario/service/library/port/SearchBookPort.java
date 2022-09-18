@@ -2,6 +2,8 @@ package co.edu.unisabana.usuario.service.library.port;
 
 import java.util.ArrayList;
 
+import co.edu.unisabana.usuario.repository.dao.entity.BookEntity;
+
 
 public interface SearchBookPort {
 
@@ -9,7 +11,7 @@ public interface SearchBookPort {
 
     int validateQuantity(String nameBook);
 
-    ArrayList searchbBookByAutor(String authorName);
+    ArrayList <BookEntity> searchbBookByAutor(String authorName);
 
 
 }

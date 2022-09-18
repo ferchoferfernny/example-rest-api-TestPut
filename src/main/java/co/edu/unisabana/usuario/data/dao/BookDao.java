@@ -1,11 +1,12 @@
-package co.edu.unisabana.usuario.repository.dao;
+package co.edu.unisabana.usuario.data.dao;
 
-import co.edu.unisabana.usuario.dto.BookDto;
-import co.edu.unisabana.usuario.repository.dao.entity.BookEntity;
+import co.edu.unisabana.usuario.data.app.AddBookPort;
+import co.edu.unisabana.usuario.data.app.RegisterBookPort;
+import co.edu.unisabana.usuario.data.app.SearchBookPort;
+import co.edu.unisabana.usuario.presentation.dto.BookDto;
+import co.edu.unisabana.usuario.data.dao.entity.BookEntity;
 import co.edu.unisabana.usuario.service.library.model.Book;
-import co.edu.unisabana.usuario.service.library.port.AddBookPort;
-import co.edu.unisabana.usuario.service.library.port.RegisterBookPort;
-import co.edu.unisabana.usuario.service.library.port.SearchBookPort;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ public class BookDao implements SearchBookPort, RegisterBookPort, AddBookPort {
 
     
     @Override
-    public ArrayList <BookEntity> searchbBookByAutor(String authorName) {
+    public ArrayList searchbBookByAutor(String authorName) {
         ArrayList <BookEntity> lookupBookDto = new ArrayList <>();
         listBooks.forEach(book -> {
             if (book.getAuthor().equals(authorName))
