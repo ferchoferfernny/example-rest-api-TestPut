@@ -52,7 +52,7 @@ public class RegisterBookServiceTest
         Mockito.verify(searchBookPort).validateExistsBook(book.getName());
         assertEquals(2,exists);
     }
-
+    // Este meotodo no revisa nada 
     @Test
     public void Given_SendCorrectIinformantion_When_AddBook_Then_returnFalse()
     {
@@ -61,7 +61,7 @@ public class RegisterBookServiceTest
         int exists = service.registerBook(book);
         Mockito.verify(searchBookPort).validateExistsBook(book.getName());
     }
-
+    // Este meotodo no revisa nada 
     @Test
     public void Given_SendCorrectIinformantion_When_RegisterBook_Then_returnFalse()
     {
@@ -71,7 +71,7 @@ public class RegisterBookServiceTest
         Mockito.verify(searchBookPort).validateExistsBook(book.getName());
     
     }
-    /* 
+    // No hay un elemento para adicionar - Service no contiene AddBook
     @Test
     public void Give_dontSendCorrectIinformantion_When_AddBook_Then_throwIllegalArgument() {
         assertThrows(IllegalArgumentException.class, () -> {
@@ -83,10 +83,11 @@ public class RegisterBookServiceTest
     public void Give_dontSendCorrectIinformantion_When_RegisterBook_Then_throwIllegalArgument() {
         assertThrows(IllegalArgumentException.class, () ->
         {
-            service.registerBook(new Book());
+            Book book = new Book("Alicia en el Pais ", 1999, "Julio Berne", false,CategoryBook.SOFT_COVER);
+            service.registerBook(book);
         });
     }
-    */
+    
     @Test
     public void Given_Book_When_RegisterBook_Then_ValidateQuantityAlowed()
     {
@@ -108,7 +109,7 @@ public class RegisterBookServiceTest
         Mockito.verify(searchBookPort).validateQuantity(book.getName());
         assertEquals(3,qty);
     }
-    /* 
+    
     @Test
     public void Given_AuthorName_When_SearchAuthorBooks_Then_FindAuthorBooks()
     {
@@ -121,11 +122,14 @@ public class RegisterBookServiceTest
     }
     
     @Test
-    public void Given_Book_When_EliminateQuantity_Then_DeleteBooks()
+    public void Given_Book_When_EmptySell_Then_DeleteBooks()
     {
-        Mockito.when(eliminateQuantity());
-        Mockito.verify(searchBookPort).eliminateQuantity(book.getQuantity());
-        assertEquals(0);
+        Book book = new Book("Hush Hush ", 2009, "Becca Fitzpatrick", false,CategoryBook.SOFT_COVER);
+        service.registerBook(book);
+        service.registerBook(book);
+        service.registerBook(book);
+        service.emptyShell();
+        assertEquals(0,searchBookPort.validateQuantity("Hush Hush "));
     }
-    */
+    
 }
