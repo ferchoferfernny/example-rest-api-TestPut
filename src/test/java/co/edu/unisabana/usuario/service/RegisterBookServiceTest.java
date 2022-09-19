@@ -28,6 +28,7 @@ public class RegisterBookServiceTest
 
     @InjectMocks
     private RegisterBookLibrary service;
+    private LookUp lk;
 
     @Mock
     private AddBookPort addBookPort;
@@ -52,32 +53,7 @@ public class RegisterBookServiceTest
         Mockito.verify(searchBookPort).validateExistsBook(book.getName());
         assertEquals(2,exists);
     }
-    // Este meotodo no revisa nada 
-    @Test
-    public void Given_SendCorrectIinformantion_When_AddBook_Then_returnFalse()
-    {
-        Book book = new Book("Alicia en el Pais ", 1999, "Julio Berne", false,CategoryBook.SOFT_COVER);
-        Mockito.when(searchBookPort.validateExistsBook(book.getName())).thenReturn(true);
-        int exists = service.registerBook(book);
-        Mockito.verify(searchBookPort).validateExistsBook(book.getName());
-    }
-    // Este meotodo no revisa nada 
-    @Test
-    public void Given_SendCorrectIinformantion_When_RegisterBook_Then_returnFalse()
-    {
-        Book book = new Book("Alicia en el Pais ", 1999, "Julio Berne", false,CategoryBook.SOFT_COVER);
-        Mockito.when(searchBookPort.validateExistsBook(book.getName())).thenReturn(true);
-        int exists = service.registerBook(book);
-        Mockito.verify(searchBookPort).validateExistsBook(book.getName());
     
-    }
-    // No hay un elemento para adicionar - Service no contiene AddBook
-    @Test
-    public void Give_dontSendCorrectIinformantion_When_AddBook_Then_throwIllegalArgument() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            service.addBook(new Book());
-        });
-    }
    
     @Test
     public void Give_dontSendCorrectIinformantion_When_RegisterBook_Then_throwIllegalArgument() {
@@ -113,12 +89,12 @@ public class RegisterBookServiceTest
     @Test
     public void Given_AuthorName_When_SearchAuthorBooks_Then_FindAuthorBooks()
     {
-        BookEntity book = new BookEntity("La chica del tren ", 2015, "Paula Hawkins", false, "suave", 1, 2);
-        LookUp author =new LookUp (searchBookPort, registerBookPort);
-        Mockito.when(author.searchbBookByAutor("Paula Hawkins"));
-        ArrayList <BookEntity> authorName =service.registerBook("Paula Hawkins");
-        Mockito.verify(searchBookPort).searchbBookByAutor(book.getAuthor());
-        assertEquals(1, authorName.size());
+        Book book = new Book("La chica del tren ", 2015, "Paula Hawkins", false,CategoryBook.SOFT_COVER);
+        Book book2 = new Book("La razon de estar Contigo", 2020, "Paula Hawkins", false,CategoryBook.SOFT_COVER);
+        service.registerBook(book);
+        service.registerBook(book2);
+        ArrayList <BookEntity> authorName = lk.searchAutorBooks("Paula Hawkins");
+        assertEquals(2, authorName.size());
     }
     
     @Test
