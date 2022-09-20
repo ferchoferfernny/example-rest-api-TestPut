@@ -24,9 +24,9 @@ public class RegisterBookLibrary {
     public int registerBook(Book book)
     {
         boolean exists = searchBookPort.validateExistsBook(book.getName());
-        int qty = searchBookPort.validateQuantity(book.getName());
         if (exists)
         {
+            int qty = searchBookPort.validateQuantity(book.getName());
             if (qty<5)
             {
                 addBookPort.addBook(book.getName());

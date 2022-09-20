@@ -32,7 +32,9 @@ public class RegisterBookServiceTest
 
     @Mock
     private AddBookPort addBookPort;
+    @Mock
     private RegisterBookPort registerBookPort;
+    @Mock
     private SearchBookPort searchBookPort;
 
 

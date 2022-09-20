@@ -31,7 +31,6 @@ public class BookControllerTest extends AbstractTest{
    @Test
     public void Given_register_only_new_book_When_registerBook_Then_bookResponse_Add_book (){
         BookDto dto = new BookDto("El Resplandor", 1972, "Stephen King", "Comercial", "suave");
-
         ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
         assertEquals("Nuevo libro registrado",result.getBody().getData());
     }
@@ -42,7 +41,7 @@ public class BookControllerTest extends AbstractTest{
 
         restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
         ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
-        assertEquals("Actualizada cantidad",result.getBody().getData());
+        assertEquals("No se tiene mas capacidad para es libro",result.getBody().getData());
     }
 
     @Test
