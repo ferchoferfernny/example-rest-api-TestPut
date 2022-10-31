@@ -28,7 +28,7 @@ public class BookControllerTest extends AbstractTest{
    */
 
  
-   @Test
+   /*@Test
     public void Given_register_only_new_book_When_registerBook_Then_bookResponse_Add_book (){
         BookDto dto = new BookDto("El Resplandor", 1972, "Stephen King", "Comercial", "suave");
         ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
@@ -54,7 +54,7 @@ public class BookControllerTest extends AbstractTest{
 
         ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
         assertEquals(null,result.getBody().getData());
-    }
+    }*/
 
     @Test
     public void Given_search_route_When_registerBook_Then_retrun_hola (){
