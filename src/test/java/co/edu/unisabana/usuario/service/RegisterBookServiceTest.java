@@ -57,16 +57,16 @@ public class RegisterBookServiceTest
     }
     
    
-    @Test
+    /*@Test
     public void Give_dontSendCorrectIinformantion_When_RegisterBook_Then_throwIllegalArgument() {
         assertThrows(IllegalArgumentException.class, () ->
         {
             Book book = new Book("Alicia en el Pais ", 1999, "Julio Berne", false,CategoryBook.SOFT_COVER);
             service.registerBook(book);
         });
-    }
+    }*/
     
-    @Test
+    /*@Test
     public void Given_Book_When_RegisterBook_Then_ValidateQuantityAlowed()
     {
         Book book = new Book("Hush Hush ", 2009, "Becca Fitzpatrick", false,CategoryBook.SOFT_COVER);
@@ -74,9 +74,9 @@ public class RegisterBookServiceTest
         int qty =service.registerBook(book);
         Mockito.verify(searchBookPort).validateQuantity(book.getName());
         assertEquals(1,qty);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void Given_Book_When_RegisterBook_Then_QuantityIsNotAllowed()
     {
         Book book = new Book("La chica del tren ", 2015, "Paula Hawkins", false,CategoryBook.SOFT_COVER);
@@ -97,7 +97,7 @@ public class RegisterBookServiceTest
         service.registerBook(book2);
         ArrayList <BookEntity> authorName = lk.searchAutorBooks("Paula Hawkins");
         assertEquals(2, authorName.size());
-    }
+    }*/
     
     @Test
     public void Given_Book_When_EmptySell_Then_DeleteBooks()
