@@ -26,18 +26,18 @@ test {
 }
 
 jacocoTestReport {
-    dependsOn(tasks.test)
-	finalizedBy(tasks.jacocoTestCoverageVerification)
-	classDirectories.setFrom(files(classDirectories.files.collect {
-		fileTree(dir: it, exclude: [
-				"**/dto/**",
-				"**/model/*",
-				"**/entity/*",
-				
+    dependsOn test // tests are required to run before generating the report
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "**/dto/**",
+                    "**/entity/*",
+                    "**/model/*",
+                    "**/UserController/*"
+            ])
         }))
+    }
 }
-
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok:1.18.24'
