@@ -25,22 +25,13 @@ pipeline {
          		sh "./gradlew jacocoTestCoverageVerification"
          	}
         }
-        /*stage('SonarQube analysis') {
+        stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh './gradlew sonarqube'
                 }
             }
-        }*/
-        stage('SonarQube analysis') {
-		steps{
-			script{
-				def scannerHome = tool 'SonarQube Scanner';
-			}
-			withSonarQubeEnv('sonarqube') {
-					sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Jurisprudencia_ORCTXT -Dsonar.sources=. -Dsonar.login=69d977f11910740d9ca95b75cede210db01489c9"
-			}
-		}
+        }
 	}	
          stage("Quality Gate") {
                     steps {
