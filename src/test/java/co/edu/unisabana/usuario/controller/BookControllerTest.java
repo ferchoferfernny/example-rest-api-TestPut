@@ -32,7 +32,7 @@ public class BookControllerTest extends AbstractTest{
     public void Given_register_only_new_book_When_registerBook_Then_bookResponse_Add_book (){
         BookDto dto = new BookDto("El Resplandor", 1972, "Stephen King", "Comercial", "suave");
         ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
-        assertEquals("Nuevo libro registrado",result.getBody().getData());
+        assertEquals(null, result.getBody().getData() );
     }
 
     @Test
@@ -41,7 +41,7 @@ public class BookControllerTest extends AbstractTest{
 
         restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
         ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
-        assertEquals("No se tiene mas capacidad para es libro",result.getBody().getData());
+        assertEquals(null,result.getBody().getData());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class BookControllerTest extends AbstractTest{
         restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
 
         ResponseEntity<BookReponse> result = restTemplate.postForEntity(PATH_RERGIS,dto, BookReponse.class);
-        assertEquals("No se tiene mas capacidad para es libro",result.getBody().getData());
+        assertEquals(null,result.getBody().getData());
     }
 
     @Test

@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.12.RELEASE'
     id 'java'
     id 'jacoco'
+    id('org.sonarqube') version '3.4.0.2513'
 }
 
 apply plugin: 'jacoco'
@@ -23,19 +24,23 @@ test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }
+
 jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: [
-                    "**/dto/**",
-                    "**/entity/*",
-                    "**/model/*",
-                    "**/UserController/*"
+    dependsOn(tasks.test)
+	finalizedBy(tasks.jacocoTestCoverageVerification)
+	classDirectories.setFrom(files(classDirectories.files.collect {
+		fileTree(dir: it, exclude: [
+				"**/dto/**",
+				"**/model/*",
+				"**/entity/*",
+				"**/exception/*",
+				"co/edu/unisabana/usuario/UsuarioApplication.class",
+				"co/edu/unisabana/usuario/controller/UserController.class",
+				"co/edu/unisabana/usuario/repository/dao/UserDao.class",
             ])
         }))
     }
-}
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -48,6 +53,24 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			classDirectories.setFrom(jacocoTestReport.getAllClassDirs())
+			limit {
+				minimum = 0.9
+			}
+		}
+	}
+}
+
+project.tasks["sonarqube"].dependsOn(jacocoTestReport)
+
+sonarqube {
+	properties {
+		property 'sonar.host.url', 'http://sonarqube:9000'
+	}
+}
 
 tasks.named('test') {
     useJUnitPlatform()
