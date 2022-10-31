@@ -95,7 +95,7 @@ public class BookDaoTest {
         if(quantity == 0){
             quantityMoreThan0 = false;
         }
-        assertFalse(quantityMoreThan0);
+        assertTrue(quantityMoreThan0);
 
     }
 }

@@ -107,7 +107,7 @@ public class RegisterBookServiceTest
         service.registerBook(book);
         service.registerBook(book);
         service.emptyShell();
-        assertFalse(0,searchBookPort.validateQuantity("Hush Hush "));
+        assertEquals(0,searchBookPort.validateQuantity("Hush Hush "));
     }
     
 }
