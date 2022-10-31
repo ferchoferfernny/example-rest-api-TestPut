@@ -33,13 +33,9 @@ jacocoTestReport {
 				"**/dto/**",
 				"**/model/*",
 				"**/entity/*",
-				"**/exception/*",
-				"co/edu/unisabana/usuario/UsuarioApplication.class",
-				"co/edu/unisabana/usuario/controller/UserController.class",
-				"co/edu/unisabana/usuario/repository/dao/UserDao.class",
-            ])
+				
         }))
-    }
+}
 
 
 dependencies {
